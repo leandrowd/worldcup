@@ -18,6 +18,7 @@ To run:
 TODOs:
 
 - [ ] Layout
-- [ ] Split the table by groups
+- [x] Split the table by groups
 - [ ] Filter games from a specific team
 - [ ] Show next stages
+- [ ] Save timezone selected using local storage

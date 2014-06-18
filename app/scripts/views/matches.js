@@ -1,13 +1,16 @@
 define([
 	'backbone',
 	'communicator',
-	'views/match'
+	'views/groups',
+	'hbs!tmpl/groups'
 ],
-function( Backbone, Communicator, MatchView) {
+function( Backbone, Communicator, GroupsView, groupsTemplate) {
     'use strict';
 
-	var MatchesView = Backbone.Marionette.CollectionView.extend({
-		itemView: MatchView,
+	var MatchesView = Backbone.Marionette.CompositeView.extend({
+		itemView: GroupsView,
+		template: groupsTemplate,
+
 		initialize: function(){
 			this.collection.fetch();
 		}

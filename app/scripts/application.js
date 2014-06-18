@@ -3,14 +3,11 @@ define([
 	'communicator',
 	'views/timezone-selector',
 	'views/matches',
-	'collections/matches',
-	'hbs!tmpl/welcome'
+	'collections/matches'
 ],
 
-function( Backbone, Communicator, TimezonesView, MatchesView, MatchesCollection, Welcome_tmpl ) {
+function( Backbone, Communicator, TimezonesView, MatchesView, MatchesCollection ) {
     'use strict';
-
-	var welcomeTmpl = Welcome_tmpl;
 
 	var App = new Backbone.Marionette.Application();
 
@@ -28,7 +25,6 @@ function( Backbone, Communicator, TimezonesView, MatchesView, MatchesCollection,
 
 	/* Add initializers here */
 	App.addInitializer( function () {
-		// document.body.innerHTML = welcomeTmpl({ success: "CONGRATS!" });
 		Communicator.mediator.trigger("APP:START");
 	});
 

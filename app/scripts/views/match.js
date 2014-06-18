@@ -9,7 +9,14 @@ function( Backbone, Communicator, macthTemplate ) {
 	var MatchesView = Backbone.Marionette.ItemView.extend({
 		template: macthTemplate,
 		tagName: 'div',
-		className: 'match',
+
+		className: function(){
+			var klass = 'match';
+			if (this.model.get('b_Finished') == true){
+				klass += ' finished'
+			}
+			return klass
+		},
 
 		initialize: function(){
 			this.model.set('timezone', 'GMT');

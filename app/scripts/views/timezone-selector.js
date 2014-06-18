@@ -12,10 +12,6 @@ function( Backbone, Communicator, Handlebars, moment, template, timezones ) {
 	var MatchesView = Backbone.Marionette.ItemView.extend({
 		template: template,
 
-		initialize: function(){
-
-		},
-
 		events: {
 			'change': 'onChange'
 		},

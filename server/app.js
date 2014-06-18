@@ -24,6 +24,7 @@ app.use(function(req, res, next){
 
 // mount static
 app.use(express.static( path.join( process.env.PWD, sourceFolder) ));
+app.use(express.static( path.join( process.env.PWD, '/.tmp') ));
 
 // route index.html
 app.get('/', function(req, res){
@@ -38,7 +39,7 @@ app.get('/api/matches', function(req, res){
 http.createServer(app).listen(app.get('port'), function(){
     console.log('Express App started!');
     console.log('Listening port ' + app.get('port'));
-    console.log('Env:' + env);
+    console.log('Env:' + env + ' | sourceFolder: ' + sourceFolder);
 });
 
 

@@ -47,6 +47,7 @@ require.config({
 
         moment: 'bower_components/momentjs/moment',
         'moment-timezone': 'bower_components/moment-timezone/moment-timezone',
+
         // "moment-timezone-data": 'text!bower_components/moment-timezone/moment-timezone.json'
 
     },
