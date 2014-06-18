@@ -5,13 +5,15 @@ var http = require('http');
 var path = require('path');
 var request = require('request');
 
+var env = process.env.NODE_ENV || 'dev';
+var sourceFolder = (env == "production") ? '/public' : '/app';
+
+process.env.PWD = process.cwd()
+
 var app = express();
 
 app.configure(function(){
-    app.set('port', 9000);
-
-    app.set('view engine', 'handlebars');
-    app.set('views', __dirname + '../app/scripts/views');
+    app.set('port', process.env.PORT || 9000);
 });
 
 // simple log
@@ -21,13 +23,11 @@ app.use(function(req, res, next){
 });
 
 // mount static
-app.use(express.static( path.join( __dirname, '../app') ));
-app.use(express.static( path.join( __dirname, '../.tmp') ));
-
+app.use(express.static( path.join( process.env.PWD, sourceFolder) ));
 
 // route index.html
 app.get('/', function(req, res){
-  res.sendfile( path.join( __dirname, '../app/index.html' ) );
+  res.sendfile( path.join( process.env.PWD, sourceFolder + '/index.html' ) );
 });
 
 app.get('/api/matches', function(req, res){
@@ -37,6 +37,8 @@ app.get('/api/matches', function(req, res){
 // start server
 http.createServer(app).listen(app.get('port'), function(){
     console.log('Express App started!');
+    console.log('Listening port ' + app.get('port'));
+    console.log('Env:' + env);
 });
 
 

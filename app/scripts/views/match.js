@@ -21,7 +21,6 @@ function( Backbone, Communicator, macthTemplate ) {
 		},
 
 		changeTimezone: function(a){
-			console.log(a);
 			this.model.set('timezone', a);
 		}
 	});
