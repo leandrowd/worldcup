@@ -11,6 +11,7 @@ function( Backbone, Communicator, GroupView, GroupsTemplate) {
 		template: GroupsTemplate,
 		itemView: GroupView,
 		itemViewContainer: '.items',
+		className: '',
 
 		initialize: function(){
 			//Grid View - based on http://jsfiddle.net/derickbailey/me4NK/
