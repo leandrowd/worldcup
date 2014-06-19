@@ -2,9 +2,10 @@ define([
 	'backbone',
 	'communicator',
 	'views/groups',
-	'hbs!tmpl/groups'
+	'hbs!tmpl/groups',
+	'models/config'
 ],
-function( Backbone, Communicator, GroupsView, groupsTemplate) {
+function( Backbone, Communicator, GroupsView, groupsTemplate, configModel) {
     'use strict';
 
 	var MatchesView = Backbone.Marionette.CompositeView.extend({
@@ -12,6 +13,11 @@ function( Backbone, Communicator, GroupsView, groupsTemplate) {
 		template: groupsTemplate,
 
 		initialize: function(){
+			this.collection.fetch();
+			this.listenTo(configModel, 'change:displayMode', this.changeDisplayMode);
+		},
+
+		changeDisplayMode: function(){
 			this.collection.fetch();
 		}
 	});

@@ -28,7 +28,7 @@ app.use(express.static( path.join( process.env.PWD, '/.tmp') ));
 
 // route index.html
 app.get('/', function(req, res){
-  res.sendfile( path.join( process.env.PWD, sourceFolder + '/index.html' ) );
+	res.sendfile( path.join( process.env.PWD, sourceFolder + '/index.html' ) );
 });
 
 app.get('/api/matches', function(req, res){
