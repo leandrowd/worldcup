@@ -15,9 +15,7 @@ function( Backbone, Communicator, GroupView, GroupsTemplate, configModel) {
 		className: '',
 
 		initialize: function(){
-			this.collection = new Backbone.Collection(_.toArray(this.model.attributes), {
-				comparator: 'group'
-			});
+			this.collection = new Backbone.Collection(_.toArray(this.model.attributes));
 
 		},
 
@@ -56,6 +54,7 @@ function( Backbone, Communicator, GroupView, GroupsTemplate, configModel) {
 					return value.get(key);
 				})
 			};
+
 
 			var homeTeams = getNames(models, 'c_HomeTeam_en'),
 				visitorTeams = getNames(models, 'c_AwayTeam_en'),

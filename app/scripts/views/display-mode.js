@@ -20,9 +20,7 @@ function( Backbone, Communicator, template ) {
 		},
 
 		onChange: function(e){
-			console.log('onChange', e.target.value)
 			Communicator.command.execute('setDisplayMode', e.target.value);
-			// Communicator.mediator.trigger('timezone:change', e.target.value);
 		}
 	});
 

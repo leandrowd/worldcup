@@ -18,7 +18,7 @@ function( Backbone, Communicator, _, moment, configModel ) {
 			if(this['_parseBy'+ displayMode]){
 
 				//sort matches by date;
-				var sortedGroups = []
+				var sortedGroups = [];
 				var groups = this['_parseBy'+ displayMode](response.data.group);
 
 				_.each(_.toArray(groups), function(item){
@@ -63,7 +63,7 @@ function( Backbone, Communicator, _, moment, configModel ) {
 		_parseBydate: function(list){
 			var timezone = configModel.get('timezone');
 			var groups = _.groupBy(list, function(item){
-				return moment(item['c_MatchDayDate']).tz(timezone).format('Do MM');
+				return moment(item['c_MatchDayDate']).tz(timezone).format('DMM');
 			});
 
 			return groups;
