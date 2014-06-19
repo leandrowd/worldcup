@@ -11,7 +11,7 @@ function( Backbone, Communicator, macthTemplate ) {
 		tagName: 'div',
 
 		className: function(){
-			var klass = 'match col-xs-6 col-sm-4 col-md-2';
+			var klass = 'match col-xs-12 col-sm-4 col-md-2';
 			if (this.model.get('b_Finished') == true){
 				klass += ' bg-success'
 			}
