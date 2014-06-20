@@ -1,0 +1,13 @@
+.ranking {
+	img {
+		max-height: 50px;
+
+		@include breakpoint(mobile) {
+			max-height: 30px;
+		}
+	}
+
+	td {
+		vertical-align: middle;
+	}
+}

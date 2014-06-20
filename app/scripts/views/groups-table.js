@@ -2,26 +2,24 @@ define([
 	'backbone',
 	'communicator',
 	'views/match',
-	'hbs!tmpl/group',
-	'models/config'
+	'hbs!tmpl/group'
 ],
-function( Backbone, Communicator, GroupView, GroupsTemplate, configModel) {
+function( Backbone, Communicator, GroupView, GroupsTemplate) {
     'use strict';
 
 	var GroupsView = Backbone.Marionette.CompositeView.extend({
 		template: GroupsTemplate,
 		itemView: GroupView,
 		itemViewContainer: '.items',
-		className: '',
 
 		initialize: function(){
 			this.collection = new Backbone.Collection(_.toArray(this.model.attributes));
-
 		},
 
 		//getting the group name
 		serializeData: function() {
-			var data = {};
+			var data = {},
+				dataCollection;
 
 			if (this.model) {
 				data = this.model.toJSON();
@@ -29,20 +27,23 @@ function( Backbone, Communicator, GroupView, GroupsTemplate, configModel) {
 
 			if (this.collection) {
 				var attrs = this.collection.models[0].attributes;
-				switch(configModel.get('displayMode')){
+				var displayMode = Communicator.reqres.request('getDisplayMode');
+				switch(displayMode){
 					case 'team':
-						data = {group: this._getTeamName(this.collection.models)};
+						dataCollection = {group: this._getTeamName(this.collection.models)};
 						break;
 
 					case 'date':
-						var timezone = configModel.get('timezone');
-						data = {group: moment(attrs['c_MatchDayDate']).tz(timezone).format('Do MMMM')};
+						var timezone = Communicator.reqres.request('getTimezone');
+						dataCollection = {group: moment(attrs['c_MatchDayDate']).tz(timezone).format('Do MMMM')};
 						break;
 
 					case 'group':
-						data = {group: attrs['c_Phase_en']};
+						dataCollection = {group: attrs['c_Phase_en']};
 						break;
 				}
+
+				_.extend(data, dataCollection);
 			}
 
 			return data;

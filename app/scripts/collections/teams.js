@@ -1,14 +1,17 @@
 define([
 	'backbone',
-	'communicator'
+	'communicator',
+	'underscore'
 ],
 function( Backbone, Communicator ) {
     'use strict';
 
 	var MatchesCollection = Backbone.Collection.extend({
-		url: function(){
-			var displayMode = Communicator.reqres.request('getDisplayMode');
-			return '/api/matches/' + displayMode;
+		url: '/api/teams',
+
+		parse: function(response){
+			var groups =  _.groupBy(response.data, 'c_Group');
+			return _.toArray(groups);
 		}
 	});
 

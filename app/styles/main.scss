@@ -2,20 +2,13 @@
 @import "bootstrap-sass-official/vendor/assets/stylesheets/bootstrap";
 @import "compass-mixins/lib/compass/css3";
 
-@mixin breakpoint($point) {
-  @if $point == mobile {
-    @media (max-width: $screen-xs-max) { @content; }
-  }
-  @else if $point == tablet {
-    @media (max-width: $screen-sm-max) { @content; }
-  }
-  @else if $point == desktop {
-    @media (max-width: $screen-md-max)  { @content; }
-  }
-  @else if $point == large {
-    @media (min-width: $screen-md-max)  { @content; }
-  }
-}
+@import "modules/mixins";
+@import "modules/display-mode";
+@import "modules/timezone-selector";
+@import "modules/match";
+@import "modules/ranking";
+
+
 
 *{
 	margin: 0;
@@ -60,205 +53,12 @@ header {
 	margin: auto;
 }
 
-.display-mode {
-	float: left;
-	padding: 10px 0;
-
-	p, select {
-		margin: 10px;
-		display: inline-block;
-	}
-}
-
-.timezone-selector {
-	float: right;
-	text-align: right;
-	padding: 10px 0;
-
-	p, select {
-		margin: 10px;
-		display: inline-block;
-	}
-}
-
 .panel, .panel-heading {
 	@include border-radius(0);
 }
+
 .panel-body {
 	padding: 0;
-}
-
-.match {
-	text-align: center;
-	border: 1px solid rgba(#333,.2);
-	// border: 1px solid #fff;
-
-	@include breakpoint(mobile) {
-		text-align: left;
-		position: relative;
-		padding: 10px;
-	}
-
-
-	h3 small {
-		font-weight: 400;
-		@include breakpoint(mobile) {
-			font-size: 16px;
-		}
-	}
-
-
-	h3 {
-		position: relative;
-		font-size: 22px;
-		text-align: left;
-		font-weight: 400;
-		margin: 0 0 15px;
-		padding: 15px 0;
-		border-bottom: 1px solid rgba(#333,.2);
-		color: #333;
-
-		@include breakpoint(mobile) {
-			width: 40%;
-			float: left;
-			font-size: 16px;
-			margin: 0;
-			padding: 10px 0;
-			border-bottom: 0;
-		}
-
-		@include breakpoint(desktop) {
-			font-size: 22px;
-			text-align: center;
-			font-weight: 400;
-		}
-
-		small {
-			font-size: 18px;
-
-			// display: block;
-			margin-top: 10px;
-			position: absolute;
-			right: 0;
-			bottom: 15px;
-
-
-			@include breakpoint(desktop) {
-				position: relative;
-				font-size: 14px;
-				display: block;
-				bottom: 0;
-			}
-		}
-	}
-
-	.score {
-		font-size: 5vw;
-		font-weight: 400;
-		position: absolute;
-		left: 50%;
-		width: 40%;
-		text-align: center;
-		margin-left: -20%;
-		line-height: 1.5;
-
-
-
-		// @include breakpoint(desktop) {
-		// 	font-size: 14px;
-		// }
-
-		// @include breakpoint(tablet) {
-		// 	font-size: 16px;
-		// }
-
-		@include breakpoint(mobile) {
-			left: auto;
-			top: 30%;
-			right: 30%;
-			margin-left: 0;
-			margin-right: -5%;
-			width: 10%;
-			font-size: 4vw;
-		}
-	}
-
-
-	&.col-md-2 {
-		.score{
-
-			font-size: 1.5vw;
-
-			@include breakpoint(tablet) {
-				font-size: 3vw;
-			}
-
-			@include breakpoint(mobile) {
-				font-size: 4vw;
-			}
-		}
-	}
-
-	&.col-md-3 {
-		.score{
-			font-size: 1.75vw;
-
-			@include breakpoint(tablet) {
-				font-size: 2.5vw;
-			}
-
-			@include breakpoint(mobile) {
-				font-size: 4vw;
-			}
-		}
-	}
-
-
-
-	figure {
-		width: 30%;
-
-
-		@include breakpoint(mobile) {
-			width: 20%;
-		}
-
-		img{
-			width: 100%;
-		}
-	}
-
-	.home {
-		float: left;
-	}
-
-	.away {
-		float: right;
-	}
-
-	figure {
-		border: 0;
-	}
-
-	legend {
-		font-size: 11px;
-		border: 0;
-		margin: 10px 0 0;
-		padding: 0;
-		line-height: 1.5;
-		min-height: 40px;
-		text-align: center;
-		font-weight: 400;
-
-		@include breakpoint(mobile) {
-			min-height: 27px;
-			line-height: 1;
-			margin-top: 5px;
-
-		}
-	}
-
-
 }
 
 footer {

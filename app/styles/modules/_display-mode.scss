@@ -1,0 +1,9 @@
+.display-mode {
+	float: left;
+	padding: 10px 0;
+
+	p, select {
+		margin: 10px;
+		display: inline-block;
+	}
+}

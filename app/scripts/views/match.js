@@ -10,6 +10,7 @@ function( Backbone, Communicator, macthTemplate ) {
 		template: macthTemplate,
 		tagName: 'div',
 
+
 		className: function(){
 			var totalItems = this.model.collection.length,
 				totalColumns = 12,
@@ -22,6 +23,9 @@ function( Backbone, Communicator, macthTemplate ) {
 				var size;
 				if(totalItems == 1) {
 					size = totalColumns;
+
+				} else if (totalItems == 2) {
+					size = totalColumns / 2;
 
 				} else if (totalItems == 3) {
 					size = totalColumns / 3;
@@ -49,7 +53,8 @@ function( Backbone, Communicator, macthTemplate ) {
 		},
 
 		initialize: function(){
-			this.model.set('timezone', 'GMT');
+			var timezone = Communicator.reqres.request('getTimezone');
+			this.model.set('timezone', timezone);
 			this.listenTo(Communicator.mediator, 'timezone:change', this.changeTimezone);
 		},
 

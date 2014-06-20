@@ -1,6 +1,6 @@
 <p>Select your timezone <span class="hidden-xs">to see the local time of the games</span>: </p>
 <select name="timezone">
-	{{#timezone this}}
-		<option>{{tz}}</option>
-	{{/timezone}}
+	{{#selectList this}}
+		<option {{selected}}>{{text}}</option>
+	{{/selectList}}
 </select>

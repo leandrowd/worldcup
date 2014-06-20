@@ -1,18 +1,18 @@
 define([
 	'backbone',
 	'communicator',
-	'router'
+	'router',
+	'models/config'
 ],
 
-function( Backbone, Communicator, Router ) {
+function( Backbone, Communicator, Router, configModel ) {
     'use strict';
 
 	var App = new Backbone.Marionette.Application();
 
 	/* Add application regions here */
 	App.addRegions({
-		matches: '.matches',
-		second: '.second',
+		content: '.content',
 		timezones: '.timezone-selector',
 		displayMode: '.display-mode'
 	});

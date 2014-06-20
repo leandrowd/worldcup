@@ -1,15 +1,15 @@
 define([
 	'backbone',
 	'communicator',
-	'models/config',
 	'views/timezone-selector',
 	'views/display-mode',
 	'views/matches',
+	'views/teams',
 	'collections/matches',
-	'collections/second'
+	'collections/teams'
 ],
 
-function( Backbone, Communicator, configModel, TimezonesView, DisplayModeView, MatchesView, MatchesCollection, SecondCollection ) {
+function( Backbone, Communicator, TimezonesView, DisplayModeView, MatchesView, TeamsView, MatchesCollection, TeamsCollection ) {
     'use strict';
 
     var Controller = Backbone.Marionette.Controller.extend({
@@ -18,35 +18,35 @@ function( Backbone, Communicator, configModel, TimezonesView, DisplayModeView, M
 
 		},
 
-		index: function(state){
+		index: function(){
+			var displayMode = Communicator.reqres.request('getDisplayMode');
+			Backbone.history.navigate('table/'+ displayMode, {trigger: true});
+		},
+
+		table: function(state){
 			var App = require('application');
+			var displayMode = Communicator.reqres.request('getDisplayMode');
 
-			var displayMode = configModel.get('displayMode');
-
-			if (displayMode !== state) {
-				configModel.set('displayMode', state);
+			if (state && displayMode !== state) {
+				Communicator.command.execute('setDisplayMode', state);
 			}
 
-			Communicator.command.setHandler('setTimezone', function(timezone){
-				configModel.set('timezone', timezone);
-			})
-
-			Communicator.command.setHandler('setDisplayMode', function(displayMode){
-				configModel.set('displayMode', displayMode);
-			})
-
-			App.matches.show(new MatchesView({
+			App.content.show(new MatchesView({
 				collection: new MatchesCollection
-			}));
-
-			App.second.show(new MatchesView({
-				collection: new SecondCollection
 			}));
 
 			App.timezones.show(new TimezonesView);
 
 			App.displayMode.show(new DisplayModeView({
-				selected: configModel.get('displayMode')
+				selected: displayMode
+			}));
+		},
+
+		ranking: function(){
+			var App = require('application');
+
+			App.content.show(new TeamsView({
+				collection: new TeamsCollection
 			}));
 		}
 	});
@@ -54,14 +54,10 @@ function( Backbone, Communicator, configModel, TimezonesView, DisplayModeView, M
     var Router = Backbone.Marionette.AppRouter.extend({
 		controller: new Controller,
 
-		initialize: function(){
-			var displayMode = configModel.get('displayMode');
-			Backbone.history.navigate('table/'+ displayMode, {trigger: true});
-		},
-
 		appRoutes: {
 			'': 'index',
-			'table/:state': 'index'
+			'table/:state': 'table',
+			'ranking' : 'ranking'
 		}
 	});
 

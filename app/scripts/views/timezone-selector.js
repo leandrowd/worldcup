@@ -16,8 +16,16 @@ function( Backbone, Communicator, Handlebars, moment, template, timezones ) {
 			'change': 'onChange'
 		},
 
-		render: function(){
-			this.$el.html(this.template(JSON.parse(timezones).links));
+		onRender: function (){
+			var selectedTimezone = Communicator.reqres.request('getTimezone');
+			var tzs = JSON.parse(timezones).links;
+
+			tzs[selectedTimezone] = {
+				name: tzs[selectedTimezone],
+				selected: true
+			}
+
+			this.$el.html(this.template(tzs));
 		},
 
 		onChange: function(e){

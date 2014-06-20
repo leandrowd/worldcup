@@ -2,7 +2,7 @@ define([
 	'backbone',
 	'backbone.marionette'
 ],
-function( Backbone ) {
+function( Backbone, Marionette, configModel ) {
     'use strict';
 
 	var Communicator = Backbone.Marionette.Controller.extend({
@@ -17,6 +17,7 @@ function( Backbone ) {
 
 			// create commands
 			this.command = new Backbone.Wreqr.Commands();
+
 		}
 	});
 
