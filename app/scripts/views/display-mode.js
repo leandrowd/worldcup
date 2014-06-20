@@ -12,7 +12,12 @@ function( Backbone, Communicator, template ) {
 		template: template,
 
 		initialize: function(){
-			this.$('.btn').button()
+
+		},
+
+		onRender: function(){
+			//select the right state
+			this.$el.find('[value='+this.options.selected+']').parent('label').addClass('active');
 		},
 
 		events: {
@@ -21,6 +26,7 @@ function( Backbone, Communicator, template ) {
 
 		onChange: function(e){
 			Communicator.command.execute('setDisplayMode', e.target.value);
+			Backbone.history.navigate('table/' + e.target.value, {trigger: true});
 		}
 	});
 

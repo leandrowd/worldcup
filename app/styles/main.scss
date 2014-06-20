@@ -50,16 +50,33 @@ h1 {
 	}
 }
 
+header {
+	display: inline-block;
+	width: 100%;
+}
+
 .wrapper {
 	width: 96%;
 	margin: auto;
 }
 
-.timezone-selector {
-	text-align: right;
-	padding: 10px;
+.display-mode {
+	float: left;
+	padding: 10px 0;
 
 	p, select {
+		margin: 10px;
+		display: inline-block;
+	}
+}
+
+.timezone-selector {
+	float: right;
+	text-align: right;
+	padding: 10px 0;
+
+	p, select {
+		margin: 10px;
 		display: inline-block;
 	}
 }
@@ -242,4 +259,8 @@ h1 {
 	}
 
 
+}
+
+footer {
+	text-align: center;
 }

@@ -15,25 +15,36 @@
 
 		<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-		<link rel="stylesheet" href="styles/main.css">
+		<link rel="stylesheet" href="/styles/main.css">
 		<link href='http://fonts.googleapis.com/css?family=Roboto:400,100' rel='stylesheet' type='text/css'>
 
 		<!-- build:js scripts/vendor/modernizr.js -->
-		<script src="scripts/bower_components/modernizr/modernizr.js"></script>
+		<script src="/scripts/bower_components/modernizr/modernizr.js"></script>
 		<!-- endbuild -->
 
 	</head>
 
 	<body>
+
 		<div class="wrapper">
-			<h1>World Cup 2014 <small>Worldwide table</small></h1>
-			<div class="display-mode"></div>
-			<div class="timezone-selector"></div>
+			<header class="row">
+				<h1>World Cup 2014 <small>Worldwide table</small></h1>
+				<div class="display-mode"></div>
+				<div class="timezone-selector"></div>
+			</header>
 			<div class="matches row"></div>
 			<div class="second row"></div>
 		</div>
+		<footer>
+			<p>
+			Built with <a href="http://backbonejs.org/">Backbone.js</a> and <a href="http://marionettejs.com/">Marionette</a> by <a href="http://github.com/leandrowd">Leandro Augusto Lemos</a><br>
+			Source available at <a href="http://github.com/leandrowd/worldcup">Github</a><br>
+			Hosted at <a href="http://heroku.com/">heroku</a>
+			</p>
+
+		</footer>
 		<!-- build:js scripts/main.js -->
-		<script data-main="scripts/init" src="scripts/bower_components/requirejs/require.js"></script>
+		<script data-main="/scripts/init" src="/scripts/bower_components/requirejs/require.js"></script>
 		<!-- endbuild -->
 		<!-- build:remove -->
 		<script>document.write('<script src="http://'

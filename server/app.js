@@ -26,14 +26,16 @@ app.use(function(req, res, next){
 app.use(express.static( path.join( process.env.PWD, sourceFolder) ));
 app.use(express.static( path.join( process.env.PWD, '/.tmp') ));
 
-// route index.html
-app.get('/', function(req, res){
-	res.sendfile( path.join( process.env.PWD, sourceFolder + '/index.html' ) );
-});
 
 app.get('/api/matches', function(req, res){
 	req.pipe(request('http://live.mobileapp.fifa.com/api/wc/matches')).pipe(res);
 });
+
+// route index.html
+app.get('*', function(req, res){
+	res.sendfile( path.join( process.env.PWD, sourceFolder + '/index.html' ) );
+});
+
 
 // start server
 http.createServer(app).listen(app.get('port'), function(){

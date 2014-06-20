@@ -18,8 +18,14 @@ function( Backbone, Communicator, configModel, TimezonesView, DisplayModeView, M
 
 		},
 
-		index: function(){
+		index: function(state){
 			var App = require('application');
+
+			var displayMode = configModel.get('displayMode');
+
+			if (displayMode !== state) {
+				configModel.set('displayMode', state);
+			}
 
 			Communicator.command.setHandler('setTimezone', function(timezone){
 				configModel.set('timezone', timezone);
@@ -38,17 +44,24 @@ function( Backbone, Communicator, configModel, TimezonesView, DisplayModeView, M
 			}));
 
 			App.timezones.show(new TimezonesView);
-			App.displayMode.show(new DisplayModeView);
+
+			App.displayMode.show(new DisplayModeView({
+				selected: configModel.get('displayMode')
+			}));
 		}
 	});
 
     var Router = Backbone.Marionette.AppRouter.extend({
 		controller: new Controller,
-		initialize: function(){
 
+		initialize: function(){
+			var displayMode = configModel.get('displayMode');
+			Backbone.history.navigate('table/'+ displayMode, {trigger: true});
 		},
+
 		appRoutes: {
-			'': 'index'
+			'': 'index',
+			'table/:state': 'index'
 		}
 	});
 
