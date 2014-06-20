@@ -1,12 +1,14 @@
 
-	<h3>{{dateFormat c_Date format='Do MMMM' timezone=timezone }}</h3>
-	<p>{{dateFormat c_Date format='hh:mm a' timezone=timezone }}</p>
+	<h3>{{dateFormat c_Date format='Do MMMM' timezone=timezone }}
+		<small>{{dateFormat c_Date format='hh:mm a' timezone=timezone }}</small>
+	</h3>
+
 	<figure class="home">
-		<img src="{{c_HomeLogoImage}}" class="img-rounded" />
+	 	<img src="{{imageFlag c_HomeTeam_en image=c_HomeLogoImage }}" class='img-rounded' />
 		<legend>{{c_HomeTeam_en}}</legend>
 	</figure>
 	<figure class="away">
-		<img src="{{c_AwayLogoImage}}" class="img-rounded" />
+		<img src="{{imageFlag c_AwayTeam_en image=c_AwayLogoImage }}" class='img-rounded' />
 		<legend>{{c_AwayTeam_en}}</legend>
 	</figure>
 	<div class="score">{{n_HomeGoals}} x {{n_AwayGoals}}</div>
