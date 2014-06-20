@@ -12,7 +12,6 @@ function( Backbone, Communicator, Router ) {
 	/* Add application regions here */
 	App.addRegions({
 		matches: '.matches',
-		second: '.second',
 		timezones: '.timezone-selector',
 		displayMode: '.display-mode'
 	});

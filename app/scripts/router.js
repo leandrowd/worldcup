@@ -5,11 +5,12 @@ define([
 	'views/timezone-selector',
 	'views/display-mode',
 	'views/matches',
+	'views/teams',
 	'collections/matches',
-	'collections/second'
+	'collections/teams'
 ],
 
-function( Backbone, Communicator, configModel, TimezonesView, DisplayModeView, MatchesView, MatchesCollection, SecondCollection ) {
+function( Backbone, Communicator, configModel, TimezonesView, DisplayModeView, MatchesView, TeamsView, MatchesCollection, TeamsCollection ) {
     'use strict';
 
     var Controller = Backbone.Marionette.Controller.extend({
@@ -39,14 +40,18 @@ function( Backbone, Communicator, configModel, TimezonesView, DisplayModeView, M
 				collection: new MatchesCollection
 			}));
 
-			App.second.show(new MatchesView({
-				collection: new SecondCollection
-			}));
-
 			App.timezones.show(new TimezonesView);
 
 			App.displayMode.show(new DisplayModeView({
 				selected: configModel.get('displayMode')
+			}));
+		},
+
+		ranking: function(){
+			var App = require('application');
+
+			App.matches.show(new TeamsView({
+				collection: new TeamsCollection
 			}));
 		}
 	});
@@ -61,7 +66,8 @@ function( Backbone, Communicator, configModel, TimezonesView, DisplayModeView, M
 
 		appRoutes: {
 			'': 'index',
-			'table/:state': 'index'
+			'table/:state': 'index',
+			'ranking' : 'ranking'
 		}
 	});
 

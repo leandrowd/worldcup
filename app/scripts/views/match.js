@@ -23,6 +23,9 @@ function( Backbone, Communicator, macthTemplate ) {
 				if(totalItems == 1) {
 					size = totalColumns;
 
+				} else if (totalItems == 2) {
+					size = totalColumns / 2;
+
 				} else if (totalItems == 3) {
 					size = totalColumns / 3;
 

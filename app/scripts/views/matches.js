@@ -1,7 +1,7 @@
 define([
 	'backbone',
 	'communicator',
-	'views/groups',
+	'views/groups-table',
 	'hbs!tmpl/groups',
 	'models/config'
 ],
