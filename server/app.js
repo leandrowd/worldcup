@@ -114,7 +114,17 @@ app.get('/api/matches/date', function(req, res){
 });
 
 app.get('/api/teams', function(req, res){
-	req.pipe(request('http://live.mobileapp.fifa.com/api/wc/teams')).pipe(res);
+	request('http://live.mobileapp.fifa.com/api/wc/teams', function (error, response, body) {
+	    var data = JSON.parse(response.body);
+	    var groups = data.data,
+	    	grouped = _.toArray(_.groupBy(groups, 'c_Group'));
+
+	    var sortedByGroup = grouped.sort(function(a,b){
+	    	return (_.values(a)[0]['c_Group'] > _.values(b)[0]['c_Group'])
+	    })
+
+	    res.send(sortedByGroup);
+    });
 });
 
 // route index.html

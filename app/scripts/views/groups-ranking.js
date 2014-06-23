@@ -16,7 +16,12 @@ function( Backbone, Communicator, TeamView, rankingTemplate) {
 
 		initialize: function(){
 			this.collection = new Backbone.Collection(_.toArray(this.model.attributes));
+			//sort teams inside group
+			this.collection.comparator = 'n_GroupPosition';
+			this.collection.sort();
 		},
+
+
 
 		//getting the group name
 		serializeData: function() {

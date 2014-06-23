@@ -30,7 +30,6 @@ function( Backbone, Communicator, Handlebars, moment, template, timezones ) {
 
 		onChange: function(e){
 			Communicator.command.execute('setTimezone', e.target.value);
-			// Communicator.mediator.trigger('timezone:change', e.target.value);
 		}
 	});
 

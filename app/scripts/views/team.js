@@ -8,12 +8,7 @@ function( Backbone, Communicator, teamTemplate) {
 
 	var MatchesView = Backbone.Marionette.ItemView.extend({
 		template: teamTemplate,
-		tagName: 'tr',
-		initialize: function(){
-			console.log(this.model.attributes);
-			// this.collection = new Backbone.Collection(_.toArray(this.model.attributes));
-		}
-
+		tagName: 'tr'
 	});
 
 	return MatchesView;

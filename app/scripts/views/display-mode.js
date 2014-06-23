@@ -11,10 +11,6 @@ function( Backbone, Communicator, template ) {
 	var DisplayMode = Backbone.Marionette.ItemView.extend({
 		template: template,
 
-		initialize: function(){
-
-		},
-
 		onRender: function(){
 			//select the right state
 			this.$el.find('[value='+this.options.selected+']').parent('label').addClass('active');

@@ -7,6 +7,7 @@
 @import "modules/timezone-selector";
 @import "modules/match";
 @import "modules/ranking";
+@import "modules/mobile-table-properties";
 
 
 
@@ -21,6 +22,7 @@ body {
 	font-family: Roboto, Helvetica, "Trebuchet MS", sans-serif;
 	font-weight: 100;
 	color: #444;
+	padding-top: 70px;
 }
 
 h1 {
