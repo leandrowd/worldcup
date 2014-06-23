@@ -35,7 +35,7 @@ function( Backbone, Communicator, GroupView, GroupsTemplate) {
 
 					case 'date':
 						var timezone = Communicator.reqres.request('getTimezone');
-						dataCollection = {group: moment(attrs['c_MatchDayDate']).tz(timezone).format('Do MMMM')};
+						dataCollection = {group: moment(attrs['c_Date']).tz(timezone).format('Do MMMM')};
 						break;
 
 					case 'group':
